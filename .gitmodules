@@ -7,3 +7,6 @@
 [submodule "dailyfeed-infrastructure"]
 	path = dailyfeed-infrastructure
 	url = https://github.com/alpha3002025/dailyfeed-infrastructure.git
+[submodule "dailyfeed-feign"]
+	path = dailyfeed-feign
+	url = https://github.com/alpha3002025/dailyfeed-feign.git
