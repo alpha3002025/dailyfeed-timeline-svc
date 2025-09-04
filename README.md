@@ -42,3 +42,24 @@ git submodule update --remote
 # 특정 submodule만 업데이트
 git submodule update --remote booksfeed-code
 ```
+
+# jib 빌드
+intellij 에서 jib, jibDockerBuild 는 동작하지 않으며 터미널에서 다음과 같이 실행해주셔야 합니다.
+```bash
+./gradlew :dailyfeed-timeline:jibDockerBuild
+docker push alpha300uk/dailyfeed-timeline-svc:0.0.1
+```
+
+또는 다음과 같이 push 를 함께 하는 것 역시 가능합니다.
+```bash
+./gradlew :dailyfeed-timeline:jib
+```
+<br/>
+
+# docker 로그인
+docker hub 를 사용한다면 docker login 을 해야합니다. 이번 프로젝트의 경우 비용을 극도로 줄여야하기에 ECR 보다는 docker hub 를 사용하게 되었습니다.
+```bash
+docker login
+```
+<br/>
+
