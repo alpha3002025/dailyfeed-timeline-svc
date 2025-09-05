@@ -10,6 +10,7 @@ helm template dailyfeed-backend-chart-0.1.0.tgz -f values-dev-timeline.yaml
 ...
 
 ## install
+#### (dev)
 helm install -n dailyfeed dailyfeed-timeline dailyfeed-backend-chart-0.1.0.tgz -f values-dev-timeline.yaml
 NAME: dailyfeed-timeline
 LAST DEPLOYED: Fri Sep  5 15:56:16 2025
@@ -18,10 +19,22 @@ STATUS: deployed
 REVISION: 1
 TEST SUITE: None
 ...
+#### (local)
+helm install -n dailyfeed dailyfeed-timeline dailyfeed-backend-chart-0.1.0.tgz -f values-local-timeline.yaml
+
+#### 또는 다음의 shell script 를 실행
+#### (dev)
+source install-helm-dev.sh
+#### (local)
+source install-helm-local.sh
+
 
 ## uninstall
 helm uninstall -n dailyfeed dailyfeed-timeline 
 release "dailyfeed-timeline" uninstalled
+
+#### 또는 다음의 shell script 를 실행
+source uninstall-helm.sh
 ```
 <br/>
 
