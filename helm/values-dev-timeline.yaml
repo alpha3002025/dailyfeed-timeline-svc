@@ -1,0 +1,16 @@
+imageTag: 0.0.1
+appName: dailyfeed-timeline
+replicas: 3
+profile: dev
+envValues:
+- name: MEMBER_SERVICE_URL
+  value: http://dailyfeed-member-svc.dailyfeed.svc.cluster.local
+- name: SEARCH_SERVICE_URL
+  value: http://dailyfeed-search-svc.dailyfeed.svc.cluster.local
+- name: CONTENT_SERVICE_URL
+  value: http://dailyfeed-content-svc.dailyfeed.svc.cluster.local
+configSecretItems:
+- kafka
+- redis-nosecret
+- mysql
+- mongodb
