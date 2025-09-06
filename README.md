@@ -1,68 +1,3 @@
-# 실행 (helm)
-local, dev 모두 helm 기반으로 운영되며, local 은 kind 클러스터, dev 는 eks 기반 클러스터 환경입니다.<br/>
-
-## dev
-```bash
-cd helm
-
-## check
-helm template dailyfeed-backend-chart-0.1.0.tgz -f values-dev-timeline.yaml
-...
-
-## install
-#### (dev)
-helm install -n dailyfeed dailyfeed-timeline dailyfeed-backend-chart-0.1.0.tgz -f values-dev-timeline.yaml
-NAME: dailyfeed-timeline
-LAST DEPLOYED: Fri Sep  5 15:56:16 2025
-NAMESPACE: dailyfeed
-STATUS: deployed
-REVISION: 1
-TEST SUITE: None
-...
-#### (local)
-helm install -n dailyfeed dailyfeed-timeline dailyfeed-backend-chart-0.1.0.tgz -f values-local-timeline.yaml
-
-#### 또는 다음의 shell script 를 실행
-#### (dev)
-source install-helm-dev.sh
-#### (local)
-source install-helm-local.sh
-
-
-## uninstall
-helm uninstall -n dailyfeed dailyfeed-timeline 
-release "dailyfeed-timeline" uninstalled
-
-#### 또는 다음의 shell script 를 실행
-source uninstall-helm.sh
-```
-<br/>
-
-## local
-```bash
-cd helm
-
-## check
-helm template dailyfeed-backend-chart-0.1.0.tgz -f values-local-timeline.yaml
-...
-
-## install
-helm install -n dailyfeed dailyfeed-timeline dailyfeed-backend-chart-0.1.0.tgz -f values-local-timeline.yaml
-NAME: dailyfeed-timeline
-LAST DEPLOYED: Fri Sep  5 15:56:16 2025
-NAMESPACE: dailyfeed
-STATUS: deployed
-REVISION: 1
-TEST SUITE: None
-...
-
-## uninstall
-helm uninstall -n dailyfeed dailyfeed-timeline 
-release "dailyfeed-timeline" uninstalled
-```
-<br/>
-
-
 # 새로운 환경에서 클론
 ```bash
 # Submodule과 함께 클론
@@ -127,3 +62,72 @@ docker login
 ```
 <br/>
 
+# 실행 (helm)
+local, dev 모두 helm 기반으로 운영되며, local 은 kind 클러스터, dev 는 eks 기반 클러스터 환경입니다.<br/>
+
+## dev
+```bash
+cd helm
+
+## check
+helm template dailyfeed-backend-chart-0.1.0.tgz -f values-dev-timeline.yaml
+...
+
+## install
+#### (dev)
+helm install -n dailyfeed dailyfeed-timeline dailyfeed-backend-chart-0.1.0.tgz -f values-dev-timeline.yaml
+NAME: dailyfeed-timeline
+LAST DEPLOYED: Fri Sep  5 15:56:16 2025
+NAMESPACE: dailyfeed
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+...
+#### (local)
+helm install -n dailyfeed dailyfeed-timeline dailyfeed-backend-chart-0.1.0.tgz -f values-local-timeline.yaml
+
+#### 또는 다음의 shell script 를 실행
+#### (dev)
+source install-helm-dev.sh
+#### (local)
+source install-helm-local.sh
+
+
+## uninstall
+helm uninstall -n dailyfeed dailyfeed-timeline 
+release "dailyfeed-timeline" uninstalled
+
+#### 또는 다음의 shell script 를 실행
+source uninstall-helm.sh
+```
+<br/>
+
+## local
+```bash
+cd helm
+
+## check
+helm template dailyfeed-backend-chart-0.1.0.tgz -f values-local-timeline.yaml
+...
+
+## install
+helm install -n dailyfeed dailyfeed-timeline dailyfeed-backend-chart-0.1.0.tgz -f values-local-timeline.yaml
+NAME: dailyfeed-timeline
+LAST DEPLOYED: Fri Sep  5 15:56:16 2025
+NAMESPACE: dailyfeed
+STATUS: deployed
+REVISION: 1
+TEST SUITE: None
+...
+
+## uninstall
+helm uninstall -n dailyfeed dailyfeed-timeline 
+release "dailyfeed-timeline" uninstalled
+```
+<br/>
+
+# helm 재배포
+```bash
+# Helm 재배포
+  helm upgrade -n dailyfeed dailyfeed-timeline dailyfeed-backend-chart-0.1.0.tgz -f values-local-timeline.yaml
+```

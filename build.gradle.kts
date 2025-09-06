@@ -38,21 +38,16 @@ subprojects {
 }
 
 project(":dailyfeed-timeline") {
-    // TODO
-    // profile
-    // helm 을 통해 동적 주입 예정
-
-    // 인프라 접속환경 : (kafkaBootstrapServers, mysql, redis, mongodb 각각의 주소)
-    // 모두 각각 service 로 만들어서 connection host 가 변경되면 service 만 변경해주면 되도록 변경 예정
-    // service 역시 helm 을 통해 profile 별로 동적 구성
-
     jib {
-        val profile : String = System.getenv("JIB_CONTAINER_PROFILE") as? String ?: "local"
-        val kafkaBootstrapServers : String = System.getenv("CONTAINER_SPRING_KAFKA_BOOTSTRAP_SERVERS") as? String ?: "localhost:19091"
+//        val profile : String = System.getenv("SPRING_PROFILES_ACTIVE") as? String ?: "local"
+//        val kafkaBootstrapServers : String = System.getenv("CONTAINER_SPRING_KAFKA_BOOTSTRAP_SERVERS") as? String ?: "localhost:19091"
 
         // Base 이미지 설정 (Java 17 기반)
         from {
-            image = "amazoncorretto:17"
+            // Google의 distroless 이미지 사용 (인증 불필요)
+            image = "gcr.io/distroless/java17-debian12"
+            // 보안 강화된 최소한의 베이스 이미지
+//            image = "amazoncorretto:17"
             // image = "eclipse-temurin:17-jre-alpine"
             // 또는 더 작은 이미지를 원한다면: "gcr.io/distroless/java17-debian11"
         }
@@ -67,29 +62,29 @@ project(":dailyfeed-timeline") {
         container {
             // JVM 옵션
             jvmFlags = listOf(
-                "-Dspring.profiles.active=${profile}",
-                "-Dspring.kafka.consumer.bootstrap-servers=${kafkaBootstrapServers}",
-                "-Dspring.kafka.producer.bootstrap-servers=${kafkaBootstrapServers}",
+                // Spring profile은 Helm에서 환경변수로 주입하므로 제거
+//               "-Dspring.profiles.active=${profile}",
 //            "-Dspring.datasource.url=${datasourceUrl}",
                 "-XX:+UseContainerSupport",
                 "-XX:+UseG1GC",
                 "-verbose:gc",
                 "-XX:+PrintGCDetails",
-                "-Dserver.port=8080",
+//                "-Dserver.port=8080",
                 "-Dfile.encoding=UTF-8",
             )
 
             // 포트 노출
-            ports = listOf("8080")
+//            ports = listOf("8080")
 
             // 환경변수
-            environment = mapOf(
-                "SPRING_PROFILES_ACTIVE" to "prod"
-            )
+            // Helm에서 주입하는 환경변수를 사용하도록 주석 처리
+//             environment = mapOf(
+//                 "SPRING_PROFILES_ACTIVE" to profile,
+//             )
 
             // 레이블
             labels = mapOf(
-                "maintainer" to "your-email@example.com",
+                "maintainer" to "alpha300uk@gmail.com",
                 "version" to project.version.toString(),
                 "description" to project.description.toString()
             )
