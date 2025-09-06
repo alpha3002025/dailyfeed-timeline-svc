@@ -1,6 +1,6 @@
 imageTag: 0.0.1
 appName: dailyfeed-timeline
-replicas: 3
+replicas: 2
 profile: dev
 envValues:
 - name: MEMBER_SERVICE_URL
