@@ -67,8 +67,8 @@ project(":dailyfeed-timeline") {
 //            "-Dspring.datasource.url=${datasourceUrl}",
                 "-XX:+UseContainerSupport",
                 "-XX:+UseG1GC",
-                "-verbose:gc",
-                "-XX:+PrintGCDetails",
+//                "-verbose:gc",
+//                "-XX:+PrintGCDetails",
 //                "-Dserver.port=8080",
                 "-Dfile.encoding=UTF-8",
             )

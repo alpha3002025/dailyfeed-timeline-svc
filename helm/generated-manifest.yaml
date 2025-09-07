@@ -1,0 +1,145 @@
+---
+# Source: dailyfeed-backend-chart/templates/timeline-svc.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: dailyfeed-timeline-svc
+  name: dailyfeed-timeline-svc
+  namespace: dailyfeed
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: dailyfeed-timeline-svc
+  type: ClusterIP
+status:
+  loadBalancer: {}
+---
+# Source: dailyfeed-backend-chart/templates/timeline-deploy.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: dailyfeed-timeline
+  name: dailyfeed-timeline
+  namespace: dailyfeed
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dailyfeed-timeline
+  strategy: 
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: dailyfeed-timeline
+    spec:
+      containers:
+      - image: nginx
+        name: nginx
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: local
+        - name: MEMBER_SERVICE_URL
+          value: http://dailyfeed-member-svc.dailyfeed.svc.cluster.local
+        - name: SEARCH_SERVICE_URL
+          value: http://dailyfeed-search-svc.dailyfeed.svc.cluster.local
+        - name: CONTENT_SERVICE_URL
+          value: http://dailyfeed-content-svc.dailyfeed.svc.cluster.local
+        envFrom:
+          - configMapRef:
+              name: kafka-config
+          - secretRef:
+              name: kafka-secret
+          - configMapRef:
+              name: redis-config
+          - configMapRef:
+              name: mysql-config
+          - secretRef:
+              name: mysql-secret
+          - configMapRef:
+              name: mongodb-config
+          - secretRef:
+              name: mongodb-secret
+      - image: alpha300uk/dailyfeed-timeline-svc:0.0.1
+        name: dailyfeed-timeline
+        ports:
+        - containerPort: 8080
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: local
+        - name: MYSQL_JDBC_URL
+          value: "jdbc:mysql://mysql.infra.svc.cluster.local:3306/dailyfeed?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC&characterEncoding=UTF-8"
+        - name: MYSQL_USERNAME
+          value: "dailyfeed"
+        - name: MYSQL_PASSWORD
+          value: "hitEnter###"
+        - name: MYSQL_SCHEMA
+          value: "dailyfeed"
+        - name: REDIS_HOST
+          value: "redis-master.infra.svc.cluster.local"
+        - name: REDIS_PORT
+          value: "6379"
+        - name: KAFKA_HOST
+          value: "kafka.infra.svc.cluster.local"
+        - name: KAFKA_PORT
+          value: "9092"
+        - name: MEMBER_SERVICE_URL
+          value: http://dailyfeed-member-svc.dailyfeed.svc.cluster.local
+        - name: SEARCH_SERVICE_URL
+          value: http://dailyfeed-search-svc.dailyfeed.svc.cluster.local
+        - name: CONTENT_SERVICE_URL
+          value: http://dailyfeed-content-svc.dailyfeed.svc.cluster.local
+        envFrom:
+          - configMapRef:
+              name: kafka-config
+          - secretRef:
+              name: kafka-secret
+          - configMapRef:
+              name: redis-config
+          - configMapRef:
+              name: mysql-config
+          - secretRef:
+              name: mysql-secret
+          - configMapRef:
+              name: mongodb-config
+          - secretRef:
+              name: mongodb-secret
+        resources: 
+          requests:
+            memory: 500Mi
+            cpu: 500m
+          limits:
+            memory: 1Gi
+            cpu: 1000m
+        lifecycle:
+          preStop:
+            exec:
+              command: ["/bin/sh", "-c", "sleep 10"]
+        readinessProbe:
+          httpGet:
+            path: /healthcheck/ready
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 1
+          successThreshold: 1
+          failureThreshold: 3
+        livenessProbe:
+          httpGet:
+            path: /healthcheck/live
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 1
+          failureThreshold: 7
+        startupProbe:
+          httpGet:
+            path: /healthcheck/startup
+            port: 8080
+          initialDelaySeconds: 30
+          periodSeconds: 1
+          failureThreshold: 3
+status: {}
