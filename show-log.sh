@@ -1,0 +1,1 @@
+kubectl logs -n dailyfeed deployments/dailyfeed-timeline -c dailyfeed-timeline -f
