@@ -41,6 +41,17 @@ git submodule update --remote
 # 특정 submodule만 업데이트
 git submodule update --remote booksfeed-code
 ```
+<br/>
+
+# 새로운 submodule 추가 
+원격 Repository 에 올려져있는 submodule 을 프로젝트 내에 submodule 로 추가하는 방법입니다.<br/>
+
+e.g.
+```bash
+# dailyfeed-paging-support submodule 추가
+git submodule add <dailyfeed-paging-support-repository-url> dailyfeed-code
+```
+<br/>
 
 # jib 빌드
 intellij 에서 jib, jibDockerBuild 는 동작하지 않으며 터미널에서 다음과 같이 실행해주셔야 합니다.
@@ -48,6 +59,7 @@ intellij 에서 jib, jibDockerBuild 는 동작하지 않으며 터미널에서 �
 ./gradlew :dailyfeed-timeline:jibDockerBuild
 docker push alpha300uk/dailyfeed-timeline-svc:0.0.1
 ```
+<br/>
 
 또는 다음과 같이 push 를 함께 하는 것 역시 가능합니다.
 ```bash
@@ -131,3 +143,4 @@ release "dailyfeed-timeline" uninstalled
 # Helm 재배포
   helm upgrade -n dailyfeed dailyfeed-timeline dailyfeed-backend-chart-0.1.0.tgz -f values-local-timeline.yaml
 ```
+<br/>
