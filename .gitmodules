@@ -13,3 +13,6 @@
 [submodule "dailyfeed-pagination-support"]
 	path = dailyfeed-pagination-support
 	url = https://github.com/alpha3002025/dailyfeed-pagination-support.git
+[submodule "dailyfeed-redis-support"]
+	path = dailyfeed-redis-support
+	url = https://github.com/alpha3002025/dailyfeed-redis-support.git
