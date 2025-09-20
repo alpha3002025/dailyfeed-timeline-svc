@@ -16,3 +16,6 @@
 [submodule "dailyfeed-redis-support"]
 	path = dailyfeed-redis-support
 	url = https://github.com/alpha3002025/dailyfeed-redis-support.git
+[submodule "dailyfeed-kafka-support"]
+	path = dailyfeed-kafka-support
+	url = https://github.com/alpha3002025/dailyfeed-kafka-support.git
