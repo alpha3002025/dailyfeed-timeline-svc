@@ -1,1 +1,1 @@
-./gradlew :dailyfeed-timeline:bootRun --args='--spring.profiles.active=local'
+./gradlew bootRun --args='--spring.profiles.active=local' 2>&1 | tee dailyfeed-timeline.log
