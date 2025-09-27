@@ -1,0 +1,1 @@
+./gradlew :dailyfeed-timeline:bootRun --args='--spring.profiles.active=local'
