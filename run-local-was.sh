@@ -1,1 +1,1 @@
-./gradlew bootRun --args='--spring.profiles.active=local' 2>&1 | tee dailyfeed-timeline.log
+./gradlew :dailyfeed-timeline:bootRun --args='--spring.profiles.active=local --server.port=8082' 2>&1 | tee dailyfeed-timeline.log
