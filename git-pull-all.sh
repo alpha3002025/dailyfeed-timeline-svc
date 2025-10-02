@@ -32,6 +32,13 @@ cd ..
 echo ""
 
 
+echo "dailyfeed-kafka-support"
+cd dailyfeed-redis-support
+git pull origin main
+cd ..
+echo ""
+
+
 echo "dailyfeed-timeline"
 cd dailyfeed-timeline
 git pull origin main
