@@ -3,8 +3,8 @@ namespace: dailyfeed
 imageTag: 0.0.1
 appName: dailyfeed-backend
 replicas: 1
-envValues: [] ## (1) 각 서비스마다 필요에 따라 다르게 지정
-configSecretItems: [] ## (2) 각 서비스마다 필요에 따라 다르게 지정
+envValues: [] ## 각 서비스마다 필요에 따라 다르게 지정
+configSecretItems: [] ## 각 서비스마다 필요에 따라 다르게 지정
 resources:
   memory:
     requests: "500Mi"
