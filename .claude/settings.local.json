@@ -10,7 +10,10 @@
       "Bash(kubectl delete svc:*)",
       "Bash(kubectl run:*)",
       "Bash(helm list:*)",
-      "Bash(helm uninstall:*)"
+      "Bash(helm uninstall:*)",
+      "Bash(docker:*)",
+      "Bash(export:*)",
+      "Bash(./gradlew:*)"
     ],
     "deny": [],
     "ask": []

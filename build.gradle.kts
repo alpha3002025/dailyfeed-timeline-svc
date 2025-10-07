@@ -54,7 +54,7 @@ project(":dailyfeed-timeline") {
 
         // 타겟 이미지 설정
         to {
-            tags = setOf("0.0.1")
+            tags = setOf("0.0.2")
             image = "alpha300uk/dailyfeed-timeline-svc"
         }
 
