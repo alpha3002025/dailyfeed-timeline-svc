@@ -1,2 +1,2 @@
 ./gradlew :dailyfeed-timeline:jibDockerBuild
-docker push alpha300uk/dailyfeed-timeline-svc:0.0.4
+docker push alpha300uk/dailyfeed-timeline-svc:0.0.5
