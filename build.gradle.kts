@@ -39,22 +39,15 @@ subprojects {
 
 project(":dailyfeed-timeline") {
     jib {
-//        val profile : String = System.getenv("SPRING_PROFILES_ACTIVE") as? String ?: "local"
-//        val kafkaBootstrapServers : String = System.getenv("CONTAINER_SPRING_KAFKA_BOOTSTRAP_SERVERS") as? String ?: "localhost:19091"
-
         // Base 이미지 설정 (Java 17 기반)
         from {
             // Google의 distroless 이미지 사용 (인증 불필요)
             image = "gcr.io/distroless/java17-debian12"
-            // 보안 강화된 최소한의 베이스 이미지
-//            image = "amazoncorretto:17"
-            // image = "eclipse-temurin:17-jre-alpine"
-            // 또는 더 작은 이미지를 원한다면: "gcr.io/distroless/java17-debian11"
         }
 
         // 타겟 이미지 설정
         to {
-            tags = setOf("0.0.5")
+            tags = setOf("beta-20251015-0001")
             image = "alpha300uk/dailyfeed-timeline-svc"
         }
 
