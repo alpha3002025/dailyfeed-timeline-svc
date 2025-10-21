@@ -19,6 +19,3 @@
 [submodule "dailyfeed-kafka-support"]
 	path = dailyfeed-kafka-support
 	url = https://github.com/alpha3002025/dailyfeed-kafka-support.git
-[submodule "dailyfeed-app-helm"]
-	path = dailyfeed-app-helm
-	url = https://github.com/alpha3002025/dailyfeed-app-helm.git
