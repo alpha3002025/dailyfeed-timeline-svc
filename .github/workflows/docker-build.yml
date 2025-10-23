@@ -14,7 +14,7 @@ on:
         type: string
 
 env:
-  # 기본 이미지 버전 (자동 생성: beta-YYYYMMDD-HHMM)
+  # 기본 이미지 버전 (자동 생성)
   DEFAULT_IMAGE_VERSION: ${{ github.ref_name }}-${{ github.run_number }}
 
 jobs:
