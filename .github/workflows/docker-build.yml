@@ -5,7 +5,6 @@ on:
     branches:
       - main
       - develop
-      - env/v1/ci-cd/github-workflow-jib-docker-build-20251023
   workflow_dispatch:
     inputs:
       image_version:
