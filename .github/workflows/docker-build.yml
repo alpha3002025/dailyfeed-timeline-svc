@@ -5,10 +5,11 @@ on:
     branches:
       - main
       - develop
+      - hotfix
   workflow_dispatch:
     inputs:
       image_version:
-        description: 'Docker image version (e.g., beta-20251023-0001)'
+        description: 'Docker image version (e.g., {branch name}-20251023-0001)'
         required: true
         type: string
 
