@@ -54,6 +54,12 @@ project(":dailyfeed-timeline") {
             val imageVersion = System.getenv("IMAGE_VERSION") ?: "beta-20251015-0001"
             tags = setOf(imageVersion)
             image = "alpha300uk/dailyfeed-timeline-svc"
+
+            // Docker Hub 인증 (환경변수에서 가져오기)
+            auth {
+                username = System.getenv("DOCKER_USERNAME") ?: ""
+                password = System.getenv("DOCKER_PASSWORD") ?: ""
+            }
         }
 
         // Docker 실행 파일 경로 명시 (로컬 빌드용)
