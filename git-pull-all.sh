@@ -4,15 +4,9 @@ git pull origin main
 cd ..
 echo ""
 
+
 echo "dailyfeed-feign"
 cd dailyfeed-feign
-git pull origin main
-cd ..
-echo ""
-
-
-echo "dailyfeed-infrastructure"
-cd dailyfeed-infrastructure
 git pull origin main
 cd ..
 echo ""
@@ -33,7 +27,7 @@ echo ""
 
 
 echo "dailyfeed-kafka-support"
-cd dailyfeed-redis-support
+cd dailyfeed-kafka-support
 git pull origin main
 cd ..
 echo ""
