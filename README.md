@@ -18,7 +18,7 @@
 - 로컬 실행은 `local-was` 프로필로 실행합니다.
 
 ```bash
-cd dailyfeed-content-svc
+cd dailyfeed-timeline-svc
 source run-local-was.sh
 ```
 
@@ -60,11 +60,11 @@ source install-local.sh cbt-20251103-1 ## cbt-20251103-1 은 이미지 태그 �
 개별 앱을 helm uninstall 후 다시 install 해서 검증하려 할 경우 다음과 같이 해주세요.
 
 ```bash
-## 수정하려는 helm app 이 dailyfeed-content 일 경우
+## 수정하려는 helm app 이 dailyfeed-timeline 일 경우
 cd dailyfeed-app-helm
-cd member
-source uninstall-helm.sh ## dailyfeed-content 제거
-source install-helm-local.sh ## dailyfeed-content 실행 
+cd timeline
+source uninstall-helm.sh ## dailyfeed-timeline 제거
+source install-helm-local.sh ## dailyfeed-timeline 실행 
 ```
 
 <br/>
@@ -147,11 +147,11 @@ IMAGE_VERSION=cbt-20251103-1 ./jibDockerBuild.sh
 
 ```bash
 # 새로운 환경에서 클론 (clone)
-git clone --recurse-submodules http://github.com/alpha3002025/dailyfeed-content-svc  
+git clone --recurse-submodules http://github.com/alpha3002025/dailyfeed-timeline-svc  
 
 # 또는 클론 후 submodule 초기화
-git clone dailyfeed-content-svc
-cd dailyfeed-content-svc
+git clone dailyfeed-timeline-svc
+cd dailyfeed-timeline-svc
 git submodule init
 git submodule update
 ```
