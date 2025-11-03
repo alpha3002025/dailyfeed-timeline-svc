@@ -7,7 +7,7 @@ build/
 dailyfeed-timeline.log
 app-helm/dailyfeed-backend-chart
 .claude
-
+**/.DS_Store
 
 ### STS ###
 .apt_generated
